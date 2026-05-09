@@ -12,7 +12,7 @@ void main() {
       runApp(app);
     },
     (error, stack) {
-      ErrorReporter.report(error, stack);
+      ErrorReporter.report(error, stack, isFatal: true);
     },
   );
 }

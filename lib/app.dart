@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
+import 'application/pages/booking_page.dart';
 import 'service_locator.dart';
 import 'util/logger.dart';
 
@@ -18,7 +20,7 @@ class App extends StatelessWidget {
       title: 'Bety App',
       theme: ThemeData(colorSchemeSeed: Colors.blue, useMaterial3: true),
       debugShowCheckedModeBanner: false,
-      home: const Scaffold(body: Center(child: Text('Test'))),
+      home: const BookingPage(),
     );
   }
 
@@ -28,6 +30,8 @@ class App extends StatelessWidget {
   static Future<Widget> create() async {
     // Ensure the Flutter framework is ready to interact with platform channels.
     WidgetsFlutterBinding.ensureInitialized();
+
+    await initializeDateFormatting('uk_UA', null);
 
     // Lock the device orientation to portrait mode to maintain a consistent layout.
     await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
