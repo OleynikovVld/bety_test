@@ -22,11 +22,12 @@ class SlotCalculator {
     required WorkingHoursEntity workingHours,
     required List<AppointmentEntity> existingAppointments,
     required int bufferMinutes,
+    DateTime? currentTime,
   }) {
     final List<SlotEntity> grid = [];
     final serviceDuration = Duration(minutes: selectedService.durationMinutes);
     final buffer = Duration(minutes: bufferMinutes);
-    final now = DateTime.now();
+    final now = currentTime ?? DateTime.now();
 
     // Filter appointments to only include those on the target date.
     final appointmentsForTargetDate = existingAppointments.where((appointment) => 
