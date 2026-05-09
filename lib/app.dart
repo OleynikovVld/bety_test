@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'service_locator.dart';
 import 'util/logger.dart';
 
 /// The root widget of the application.
@@ -25,9 +26,14 @@ class App extends StatelessWidget {
   ///
   /// Returns a fully initialized [App] widget ready to be passed to [runApp].
   static Future<Widget> create() async {
+    // Ensure the Flutter framework is ready to interact with platform channels.
     WidgetsFlutterBinding.ensureInitialized();
 
+    // Lock the device orientation to portrait mode to maintain a consistent layout.
     await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+    // Initialize Dependency Injection
+    setupServiceLocator();
 
     logger.i('App initialization complete.');
 
